@@ -1,0 +1,19 @@
+{
+  "type": "projectone:royal_amethyst_poison_sack",
+  "category": "equipment",
+  "group": "",
+  "pattern": [
+    "CBC",
+    "BAB",
+    "CBC"
+  ],
+  "key": {
+    "A": { "item": "projectone:royal_amethyst_poison_sack" },
+    "B": { "item": "minecraft:arrow" },
+    "C": { "item": "projectone:amethyst_dust" }
+  },
+  "result": {
+    "id": "minecraft:arrow",
+    "count": 4
+  }
+}

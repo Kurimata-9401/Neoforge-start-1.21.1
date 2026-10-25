@@ -43,8 +43,7 @@ public class ProjectOne {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModCreativeModeTab.register((modEventBus));
-
-
+        ModRecipes.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

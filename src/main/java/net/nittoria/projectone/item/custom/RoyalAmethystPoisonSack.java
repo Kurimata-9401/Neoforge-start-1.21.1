@@ -10,14 +10,4 @@ public class RoyalAmethystPoisonSack extends Item {
         super(properties);
     }
 
-    @Override
-    public boolean hasCraftingRemainingItem(ItemStack stack) {
-
-        return super.hasCraftingRemainingItem(stack);
-    }
-
-    @Override
-    public boolean isDamageable(ItemStack stack) {
-        return super.isDamageable(stack);
-    }
 }

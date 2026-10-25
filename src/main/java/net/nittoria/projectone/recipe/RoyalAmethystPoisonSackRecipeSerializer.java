@@ -4,22 +4,33 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.ShapelessRecipe;
-import net.nittoria.projectone.recipe.RoyalAmethystPoisonSackRecipe;
+import net.minecraft.world.item.crafting.ShapedRecipe;
 
 public class RoyalAmethystPoisonSackRecipeSerializer implements RecipeSerializer<RoyalAmethystPoisonSackRecipe> {
 
-    // В 1.21.1 ShapelessRecipe уже имеет готовые кодек и стрим-кодек, которые можно переиспользовать
     public static final RoyalAmethystPoisonSackRecipeSerializer INSTANCE = new RoyalAmethystPoisonSackRecipeSerializer();
-    public static final MapCodec<RoyalAmethystPoisonSackRecipe> CODEC = ShapelessRecipe.Serializer.CODEC.xmap(
-            // Преобразование из стандартного ShapelessRecipe в наш кастомный
-            shapeless -> new RoyalAmethystPoisonSackRecipe(shapeless.getGroup(), shapeless.category(), shapeless.getResultItem(null), shapeless.getIngredients()),
-            // Обратное преобразование (обычно не требуется, но можно вернуть как есть)
-            custom -> custom
-    );
+
+    public static final MapCodec<RoyalAmethystPoisonSackRecipe> CODEC =
+            ShapedRecipe.Serializer.CODEC.xmap(
+                    shaped -> new RoyalAmethystPoisonSackRecipe(
+                            shaped.getGroup(),
+                            shaped.category(),
+                            shaped.pattern,
+                            shaped.getResultItem(null),
+                            shaped.showNotification()
+                    ),
+                    custom -> custom
+            );
+
     public static final StreamCodec<RegistryFriendlyByteBuf, RoyalAmethystPoisonSackRecipe> STREAM_CODEC =
-            ShapelessRecipe.Serializer.STREAM_CODEC.map(
-                    shapeless -> new RoyalAmethystPoisonSackRecipe(shapeless.getGroup(), shapeless.category(), shapeless.getResultItem(null), shapeless.getIngredients()),
+            ShapedRecipe.Serializer.STREAM_CODEC.map(
+                    shaped -> new RoyalAmethystPoisonSackRecipe(
+                            shaped.getGroup(),
+                            shaped.category(),
+                            shaped.pattern,
+                            shaped.getResultItem(null),
+                            shaped.showNotification()
+                    ),
                     custom -> custom
             );
 
